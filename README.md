@@ -1,68 +1,93 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## React理念
 
-## Available Scripts
+### 初步理解
 
-In the project directory, you can run:
+1. 把UI划分出组件层级
 
-### `npm start`
+2. 创建应用的静态版本
+3. ...
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 拆分展示型组件
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+**首页**
 
-### `npm test`
+MouthSelect
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+TotalNumber
 
-### `npm run build`
+ViewTab
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+CreateButton
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+PriceList--PriceItem
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### PriceList
 
-### `npm run eject`
+分析属性：列表数据，编辑，删除方法
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+确定数据结构
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+开发
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+##### 选择图表库
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+使用svg代替font icon
 
-## Learn More
+icomoon，ionicons（本例使用）
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+安装react-ionicons，@2.1.6版本
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+引用，使用
 
-### Code Splitting
+##### 使用PropTypes检查属性类型
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+```react
+import PropTypes from 'prop-typs'
+...
+PriceList.propTypes = {
+  items: PropTypes.array.isRequired,
+  onModifyItemL: PropTypes.func.isRequired,
+  onDeleteItemL: PropTypes.func.isRequired
+}
 
-### Analyzing the Bundle Size
+// defaultProps:默认属性
+PriceList.defaultProps = {
+  onModifyItemL: () => {}
+}
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+#### TotalNumber
 
-### Making a Progressive Web App
+#### ViewTab
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+统一管理常量
 
-### Advanced Configuration
+#### MouthSelect
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+创建按钮
 
-### Deployment
+创建下拉菜单
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+下拉菜单显示两列
 
-### `npm run build` fails to minify
+添加选择高亮
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+添加交互
+
+优化
+
+### 首页--Home
+
+组合组件
+
+<React.Fragment>：空节点
+
+#### State设计原则
+
+最小化State原则
+
+传递state
+
+#### 分析数据流
+
+分析添加组件方法（单项数据流）
