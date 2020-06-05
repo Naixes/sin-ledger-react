@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {range} from '../util'
+import {padLeft, range} from '../util'
 
 class MonthPicker extends React.Component {
     constructor(props) {
@@ -52,12 +52,13 @@ class MonthPicker extends React.Component {
         return (
             <div className="dropdown" ref={this.picker}>
                 <p>选择日期</p>
-                <button className="btn btn-lg btn-secondary dropdown-toggle" onClick={this.toggle}>{`${year}年${month}月`}</button>
+                <button className="btn btn-lg btn-secondary dropdown-toggle" onClick={this.toggle}>{`${year}年${padLeft(month)}月`}</button>
                 {isOpen && (
                 <div className="dropdown-menu" style={{display: 'block'}}>
                     <div className="row">
                         <div className="col border-right">
                         {yearRange.map((yearNumber, index) => (
+                            // eslint-disable-next-line
                             <a
                                 className={yearNumber === selectedYear ? 'dropdown-item active' : 'dropdown-item'}
                                 href="#"
@@ -70,6 +71,7 @@ class MonthPicker extends React.Component {
                         </div>
                         <div className="col">
                         {monthRange.map((monthNumber, index) => (
+                            // eslint-disable-next-line
                             <a
                                 className={monthNumber === month ? 'dropdown-item active' : 'dropdown-item'}
                                 href="#"

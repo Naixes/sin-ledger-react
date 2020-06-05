@@ -23,6 +23,7 @@ const PriceList = ({items, onModifyItem, onDeleteItem}) => {
                     <span className="col-4">{item.title}</span>
                     <span className="col-3 font-weight-bold">{item.category.type === 'outcome' ? '-' : '+'}{item.price}元</span>
                     <span className="col-2">{item.date}</span>
+                    {/* eslint-disable-next-line */}
                     <a 
                         href='#'
                         className="col-1" 
@@ -37,6 +38,7 @@ const PriceList = ({items, onModifyItem, onDeleteItem}) => {
                             icon='ios-create-outline'
                         ></Ionicon>
                     </a>
+                    {/* eslint-disable-next-line */}
                     <a 
                         href='#'
                         className="col-1" 

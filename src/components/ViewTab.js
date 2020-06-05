@@ -3,14 +3,15 @@ import PropTypes from 'prop-types'
 import Ionicon from 'react-ionicons'
 import {Colors, LIST_VIEW, CHART_VIEW} from '../util'
 
-const generateLinkClass = (active, current) => {
-    return (active === current) ? 'active nav-link' : 'nav-link'
+const generateLinkClass = (activeTab, current) => {
+    return (activeTab === current) ? 'active nav-link' : 'nav-link'
 }
 
 const ViewTab = ({activeTab, onChangeTab}) => {
     return (
         <ul className="nav nav-tabs nav-fill my-4">
             <li className="nav-item">
+                {/* eslint-disable-next-line */}
                 <a 
                     className={generateLinkClass(activeTab, LIST_VIEW)} 
                     href='#'
@@ -27,6 +28,7 @@ const ViewTab = ({activeTab, onChangeTab}) => {
                 </a>
             </li>
             <li className="nav-item">
+                {/* eslint-disable-next-line */}
                 <a 
                     className={generateLinkClass(activeTab, CHART_VIEW)}
                     href='#'
@@ -46,7 +48,7 @@ const ViewTab = ({activeTab, onChangeTab}) => {
 }
 
 ViewTab.propTypes = {
-    active: PropTypes.string.isRequired,
+    activeTab: PropTypes.string.isRequired,
     onChangeTab: PropTypes.func.isRequired
 }
 
