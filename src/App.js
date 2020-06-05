@@ -5,6 +5,7 @@ import './App.css';
 import PriceList from './components/PriceList'
 import ViewTab from './components/ViewTab'
 import TotalPrice from './components/TotalPrice';
+import CreateButton from './components/CreateButton';
 
 const items = [{
   "id": 1,
@@ -44,6 +45,7 @@ function App() {
         onModifyItem = {item => console.log(item)}
         onDeleteItem = {item => console.log(item)}
       ></PriceList>
+      <CreateButton onClick={() => console.log('new')}></CreateButton>
       <ViewTab activeTab="LIST_VIEW" onChangeTab = {tab => console.log(tab)}></ViewTab>
     </div>
   );
