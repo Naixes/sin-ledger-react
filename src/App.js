@@ -6,6 +6,7 @@ import PriceList from './components/PriceList'
 import ViewTab from './components/ViewTab'
 import TotalPrice from './components/TotalPrice';
 import CreateButton from './components/CreateButton';
+import MonthPicker from './components/MonthPicker';
 
 const items = [{
   "id": 1,
@@ -35,9 +36,16 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <div>
-          <TotalPrice income={0} outcome={0}></TotalPrice>
+        <div className="row mb-5">
+          <img src={logo} className="App-logo" alt="logo" />
+        </div>
+        <div className="row">
+          <div className="col">
+            <MonthPicker year={2020} month={6} onChange={(year, month) => console.log(year, month)}></MonthPicker>
+          </div>
+          <div className="col">
+            <TotalPrice income={0} outcome={0}></TotalPrice>
+          </div>
         </div>
       </header>
       <PriceList

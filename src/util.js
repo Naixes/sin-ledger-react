@@ -3,6 +3,14 @@ export const CHART_VIEW = 'chart'
 export const TYPE_INCOME = 'income'
 export const TYPE_OUTCOME = 'outcome'
 
+export const range = (size, startAt) => {
+  let arr = []
+  for (let index = 0; index < size; index++) {
+    arr[index] = startAt + index    
+  }
+  return arr
+}
+
 export const Colors = {
   blue: '#347eff',
   deepBlue: '#61dafb',
