@@ -7,7 +7,9 @@ const PriceList = ({items, onModifyItem, onDeleteItem}) => {
     return (
         <ul className="list-group">
             {items.map(item => (
-                <li className="list-group-item d-flex justify-content-between align-items-center">
+                // flex布局
+                <li key= {item.id} className="list-group-item d-flex justify-content-between align-items-center">
+                    {/* 栅格系统 */}
                     <span className="col-1">
                         <Ionicon
                             // 圆
@@ -22,7 +24,7 @@ const PriceList = ({items, onModifyItem, onDeleteItem}) => {
                     <span className="col-3 font-weight-bold">{item.category.type === 'outcome' ? '-' : '+'}{item.price}元</span>
                     <span className="col-2">{item.date}</span>
                     <a 
-                        href
+                        href='#'
                         className="col-1" 
                         role="button" 
                         onClick={(e) => { e.preventDefault(); onModifyItem(item.id)}}
@@ -36,7 +38,7 @@ const PriceList = ({items, onModifyItem, onDeleteItem}) => {
                         ></Ionicon>
                     </a>
                     <a 
-                        href
+                        href='#'
                         className="col-1" 
                         role="button" 
                         onClick={(e) => { e.preventDefault(); onDeleteItem(item.id)}}

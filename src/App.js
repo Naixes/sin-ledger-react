@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 import PriceList from './components/PriceList'
+import ViewTab from './components/ViewTab'
 
 const items = [{
   "id": 1,
@@ -39,6 +40,7 @@ function App() {
         onModifyItem = {item => console.log(item)}
         onDeleteItem = {item => console.log(item)}
       ></PriceList>
+      <ViewTab activeTab="LIST_VIEW" onChangeTab = {tab => console.log(tab)}></ViewTab>
     </div>
   );
 }
