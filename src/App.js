@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 import PriceList from './components/PriceList'
 import ViewTab from './components/ViewTab'
+import TotalPrice from './components/TotalPrice';
 
 const items = [{
   "id": 1,
@@ -34,6 +35,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <div>
+          <TotalPrice income={0} outcome={0}></TotalPrice>
+        </div>
       </header>
       <PriceList
         items = {items}
