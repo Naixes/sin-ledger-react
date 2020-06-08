@@ -4,7 +4,8 @@ export const TYPE_INCOME = 'income'
 export const TYPE_OUTCOME = 'outcome'
 
 export const padLeft = (n) => {
-  return n < 10 ? '0' + n : n
+  let str = String(n)
+  return n < 10 && !str.startsWith('0') ? '0' + n : n
 }
 
 export const parseToYearAndMonth = (str) => {

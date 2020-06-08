@@ -32,13 +32,13 @@ class MonthPicker extends React.Component {
         })
     }
     selectYear = (event, selected) => {
-        event.preventDefault()
+        // event.preventDefault()
         this.setState({
             selectedYear: selected
         })
     }
     selectMonth = (event, selected) => {
-        event.preventDefault()
+        // event.preventDefault()
         this.setState({
             isOpen: false
         })
@@ -56,7 +56,7 @@ class MonthPicker extends React.Component {
                 {isOpen && (
                 <div className="dropdown-menu" style={{display: 'block'}}>
                     <div className="row">
-                        <div className="col border-right">
+                        <div className="col years-range border-right">
                         {yearRange.map((yearNumber, index) => (
                             // eslint-disable-next-line
                             <a
@@ -69,7 +69,7 @@ class MonthPicker extends React.Component {
                             </a>
                         ))}
                         </div>
-                        <div className="col">
+                        <div className="col months-range">
                         {monthRange.map((monthNumber, index) => (
                             // eslint-disable-next-line
                             <a
@@ -78,7 +78,7 @@ class MonthPicker extends React.Component {
                                 key={index}
                                 onClick={(e) => this.selectMonth(e, monthNumber)}
                             >
-                                {monthNumber}
+                                {padLeft(monthNumber)}
                             </a>
                         ))}
                         </div>

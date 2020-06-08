@@ -18,8 +18,8 @@ const props = {
     onDeleteItem: jest.fn()
 }
 
-let wrapper
 describe('test PriceList component', () => {
+    let wrapper
     beforeEach(() => {
         wrapper = shallow(<PriceList {...props}/>)
     })
