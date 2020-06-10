@@ -2,6 +2,7 @@ import React from 'react';
 
 import {Tabs, Tab} from '../components/Tabs';
 import CategorySelect from '../components/CategorySelect';
+import PriceForm from '../components/PriceForm';
 
 const testCategories = [
     {
@@ -47,6 +48,8 @@ const testCategories = [
         "type": "income"
     },
 ]
+
+const editItem = {}
   
 class Create extends React.Component {
     constructor() {
@@ -56,11 +59,17 @@ class Create extends React.Component {
             activeCategoryId: '1'
         }
     }
+    // 分类选择
     categoryChange = (id) => {
         this.setState({
             activeCategoryId: id
         })
     }
+    // 表单
+    submit = (values) => {
+        console.log(values)
+    }
+    cancel = () => {}
     render() {
         const {defaultTabIndex, activeCategoryId} = this.state
         return (
@@ -71,6 +80,7 @@ class Create extends React.Component {
                     <Tab>支出</Tab>
                 </Tabs>
                 <CategorySelect activeCategoryId={activeCategoryId} categories={testCategories} onCategoryChange={this.categoryChange}></CategorySelect>
+                <PriceForm onSubmit={this.submit} onCancel={this.cancel} item={editItem}></PriceForm>
             </div>
         )
     }
