@@ -76,6 +76,7 @@ class PriceForm extends React.Component {
             </div>
             <button type="submit" className="btn btn-primary mr-3">提交</button>
             <button className="btn btn-secondary" onClick={this.props.onCancel}> 取消 </button>
+            {/* 提示 */}
             { !this.state.isValidate && 
                 <div className="alert alert-danger mt-3" role="alert">
                 {this.state.errMessage}

@@ -4,38 +4,14 @@ import ViewTab from '../components/ViewTab'
 import TotalPrice from '../components/TotalPrice';
 import CreateButton from '../components/CreateButton';
 import MonthPicker from '../components/MonthPicker';
-import {parseToYearAndMonth, padLeft, LIST_VIEW} from '../util'
+import Loader from '../components/Loader';
+
+import withContext from '../WithContext'
+// 可以用Tabs组件替代
+import {LIST_VIEW} from '../util'
 
 import React from 'react';
 
-const categories = {
-    "1": {
-      "id": 1,
-      "name": "旅游",
-      "type": "outcome",
-      "iconName": "md-plane"
-    },
-    "2": {
-      "id": 1,
-      "name": "旅游",
-      "type": "outcome",
-      "iconName": "md-plane"
-    }
-}
-
-const items = [{
-  "id": 1,
-  "title": "去云南旅游",
-  "price": 200,
-  "date": "2020-06-23",
-  "cid": 1
-}, {
-  "id": 2,
-  "title": "去云南旅游",
-  "price": 400,
-  "date": "2020-06-22",
-  "cid": 2
-}]
 const newItem = {
   "id": 3,
   "title": "带妈妈去旅游",
@@ -48,10 +24,11 @@ class Home extends React.Component {
     constructor() {
         super()
         this.state = {
-            items,
-            currentDate: parseToYearAndMonth(),
             tabView: LIST_VIEW
         }
+    }
+    componentDidMount() {
+        this.props.actions.getInitialData()
     }
     addItem = () => {
         this.setState({
@@ -88,42 +65,60 @@ class Home extends React.Component {
         })
     }
     render() {
-        const {currentDate, tabView, items} = this.state
+        const {data} = this.props
+        const {items, categories, currentDate, isLoading} = data
+        const {tabView} = this.state
+
+        console.log('items', items)
         // 添加目录类型并且过滤时间
         const itemsWithCategory = items.map(item => {
             item.category = categories[item.cid]
             return item
-        }).filter(item => {
-            return item.date.includes(`${currentDate.year}-${padLeft(currentDate.month)}`)
         })
         return (
             // 空节点
             <React.Fragment>
-                <header className="App-header">
-                <div className="row mb-5">
-                    <img src={logo} className="App-logo" alt="logo" />
-                </div>
-                <div className="container">
-                    <div className="row align-items-end">
-                        <div className="col">
-                        <MonthPicker year={currentDate.year} month={currentDate.month} onChange={this.changeDate}></MonthPicker>
-                        </div>
-                        <div className="col">
-                        <TotalPrice income={0} outcome={0}></TotalPrice>
+                <header className="home-header">
+                    <div className="row mb-5">
+                        <img src={logo} className="App-logo" alt="logo" />
+                    </div>
+                    <div className="container">
+                        <div className="row align-items-end">
+                            <div className="col">
+                            <MonthPicker year={currentDate.year} month={currentDate.month} onChange={this.changeDate}></MonthPicker>
+                            </div>
+                            <div className="col">
+                            <TotalPrice income={0} outcome={0}></TotalPrice>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </header>
-                <CreateButton onClick={this.addItem}></CreateButton>
-                <ViewTab activeTab={tabView} onChangeTab = {this.changeTab}></ViewTab>
-                <PriceList
-                items = {itemsWithCategory}
-                onModifyItem = {this.modifyItem}
-                onDeleteItem = {this.deleteItem}
-                ></PriceList>
+                <div className="home-content">
+                    { isLoading &&
+                    <Loader/>
+                    }
+                    { !isLoading && 
+                    <React.Fragment>
+                        <ViewTab activeTab={tabView} onChangeTab = {this.changeTab}></ViewTab>
+                        { itemsWithCategory.length<=0 &&
+                        <div className="alert alert-light text-center">
+                            您还没有任何记账记录
+                        </div>
+                        }
+                        <CreateButton onClick={this.addItem}></CreateButton>
+                        { itemsWithCategory.length>0 &&
+                        <PriceList
+                        items = {itemsWithCategory}
+                        onModifyItem = {this.modifyItem}
+                        onDeleteItem = {this.deleteItem}
+                        ></PriceList>
+                        }
+                    </React.Fragment>
+                    }
+                </div>
             </React.Fragment>
         )
     }
 }
 
-export default Home
+export default withContext(Home)

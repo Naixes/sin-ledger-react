@@ -3,6 +3,7 @@ export const CHART_VIEW = 'chart'
 export const TYPE_INCOME = 'income'
 export const TYPE_OUTCOME = 'outcome'
 
+// 校验时间字符串
 export const validateDate = (dateStr) => {
   // 校验格式
   const regEx = /^\d{4}-\d{2}-\d{2}$/
@@ -13,11 +14,13 @@ export const validateDate = (dateStr) => {
   return d.toISOString().slice(0, 10) === dateStr
 }
 
+// 给个位数前补0
 export const padLeft = (n) => {
   let str = String(n)
   return n < 10 && !str.startsWith('0') ? '0' + n : n
 }
 
+// 返回当前年月
 export const parseToYearAndMonth = (str) => {
   const date = str ? new Date(str) : new Date()
   return {
@@ -26,6 +29,7 @@ export const parseToYearAndMonth = (str) => {
   }
 }
 
+// 返回一个给定长度和起始值的数组
 export const range = (size, startAt) => {
   let arr = []
   for (let index = 0; index < size; index++) {

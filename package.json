@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -14,7 +15,10 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"react-scripts start\" \"npm run mock\"",
+    "start2": "npm run mock & react-scripts start",
+    "dev:start": "react-scripts start",
+    "mock": "json-server --watch db.json --port 3005",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -36,6 +40,8 @@
   },
   "devDependencies": {
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2"
-  }
+    "enzyme-adapter-react-16": "^1.15.2",
+    "json-server": "^0.16.1"
+  },
+  "proxy": "http://localhost:3005"
 }
