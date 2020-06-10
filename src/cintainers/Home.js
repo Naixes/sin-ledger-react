@@ -53,7 +53,7 @@ class Home extends React.Component {
             tabView: LIST_VIEW
         }
     }
-    newItem = () => {
+    addItem = () => {
         this.setState({
             items: [newItem, ...this.state.items]
         })
@@ -114,7 +114,7 @@ class Home extends React.Component {
                     </div>
                 </div>
                 </header>
-                <CreateButton onClick={this.newItem}></CreateButton>
+                <CreateButton onClick={this.addItem}></CreateButton>
                 <ViewTab activeTab={tabView} onChangeTab = {this.changeTab}></ViewTab>
                 <PriceList
                 items = {itemsWithCategory}

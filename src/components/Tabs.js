@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
+// 对ViewTab的重构
 export class Tabs extends React.Component {
   constructor(props) {
     super(props)
