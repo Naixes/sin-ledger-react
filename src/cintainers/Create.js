@@ -6,7 +6,6 @@ import PriceForm from '../components/PriceForm';
 import withContext from '../WithContext'
 import { TYPE_INCOME, TYPE_OUTCOME } from '../util'
 
-const editItem = {}
 const tabs = [
     { label: '支出',
       value: TYPE_OUTCOME },
@@ -54,11 +53,15 @@ class Create extends React.Component {
     }
     render() {
         const {data} = this.props
-        const {categories} = data
+        const {categories, items} = data
+        const {id} = this.props.match.params
         const {defaultTabIndex, activeCategoryId} = this.state
 
         // 过滤类目
         const filterCategories = Object.keys(categories).filter(key => (categories[key].type === tabs[defaultTabIndex].value)).map(key => categories[key])
+
+        // 编辑
+        const editItem = (id && items[id]) ? items[id] : {}
 
         return (
             // py：padding-bottom/top

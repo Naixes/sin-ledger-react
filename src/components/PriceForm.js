@@ -53,11 +53,12 @@ class PriceForm extends React.Component {
     }
   }
   render() {
+    const { price, title, date } = this.props.item
     return (
         <form noValidate onSubmit={(e) => {this.submit(e)}}>
             <div className="form-group">
                 <label htmlFor="title">标题 *</label>
-                <input className="form-control" id="title" type="text" ref={(input) => {this.titleInput = input}} placeholder="请输入标题"/>
+                <input className="form-control" id="title" type="text" defaultValue={title} ref={(input) => {this.titleInput = input}} placeholder="请输入标题"/>
             </div>
             <div className="form-group">
                 <label htmlFor="price">价格 *</label>
@@ -65,13 +66,13 @@ class PriceForm extends React.Component {
                     <div className="input-group-prepend">
                     <span className="input-group-text">¥</span>
                     </div>
-                    <input className="form-control" id="price" type="number" ref={(input) => {this.priceInput = input}} placeholder="请输入价格"/>
+                    <input className="form-control" id="price" type="number" defaultValue={price} ref={(input) => {this.priceInput = input}} placeholder="请输入价格"/>
                 </div>
             </div>
             <div className="form-group">
             <label htmlFor="date">日期 *</label>
             <input 
-                type="date" className="form-control"  id="date" placeholder="请输入日期" ref={(input) => {this.dateInput = input}}  
+                type="date" className="form-control"  id="date" placeholder="请输入日期" defaultValue={date} ref={(input) => {this.dateInput = input}}  
             />
             </div>
             <button type="submit" className="btn btn-primary mr-3">提交</button>

@@ -12,14 +12,6 @@ import {LIST_VIEW} from '../util'
 
 import React from 'react';
 
-const newItem = {
-  "id": 3,
-  "title": "带妈妈去旅游",
-  "price": 1500,
-  "date": "2020-06-22", 
-  "cid": 1
-}
-
 class Home extends React.Component {
     constructor() {
         super()
@@ -34,15 +26,7 @@ class Home extends React.Component {
         this.props.history.push('/create')
     }
     modifyItem = (id) => {
-        const modifiedItems = this.state.items.map(item => {
-            if(item.id === id) {
-                item.title = "修改过的标题"
-            }
-            return item
-        })
-        this.setState({
-            items: modifiedItems
-        })
+        this.props.history.push(`/edit/${id}`)
     }
     deleteItem = (id) => {
         const filterItems = this.state.items.filter(item => {
@@ -67,7 +51,6 @@ class Home extends React.Component {
         const {items, categories, currentDate, isLoading} = data
         const {tabView} = this.state
 
-        console.log('items', items)
         // 添加目录类型
         const itemsWithCategory = Object.keys(items).map(id => {
             items[id].category = categories[items[id].cid]

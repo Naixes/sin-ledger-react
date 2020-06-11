@@ -47,7 +47,7 @@ class App extends React.Component {
         })
       }),
       // 添加数据
-      addItem: withLoading(async() => {
+      addItem: withLoading(async(values, ) => {
         
       }),
       // 获取编辑页面数据，包括分类数据和编辑数据
