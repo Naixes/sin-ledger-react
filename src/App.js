@@ -48,7 +48,7 @@ class App extends React.Component {
       }),
       // 删除数据
       deleteItem: withLoading(async(id) => {
-        const deletItem = await axios.get(`/items/${id}`)
+        const deletItem = await axios.delete(`/items/${id}`)
         delete this.state.items[id]
         this.setState({
           items: this.state.items,
