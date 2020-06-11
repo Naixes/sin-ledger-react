@@ -36,8 +36,9 @@ class Create extends React.Component {
         })
     }
     // 表单
-    submit = (values) => {
-        console.log(values)
+    submit = (values, isEdit) => {
+        isEdit ? this.props.actions.updateItem(values, this.state.activeCategoryId) : this.props.actions.addItem(values, this.state.activeCategoryId)
+        this.props.history.push('/')
     }
     cancel = () => {}
     componentDidMount() {

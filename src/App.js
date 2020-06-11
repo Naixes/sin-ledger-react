@@ -8,7 +8,7 @@ import './App.css';
 import Home from './cintainers/Home';
 import Create from './cintainers/Create';
 
-import {parseToYearAndMonth, flatternArr} from './util'
+import {parseToYearAndMonth, flatternArr, ID} from './util'
 import {AppContext} from './AppContent'
 
 class App extends React.Component {
@@ -46,9 +46,37 @@ class App extends React.Component {
           isLoading: false
         })
       }),
+      // 更新数据
+      updateItem: withLoading(async(values, cateId) => {
+        const parseDate = parseToYearAndMonth(values.date)
+        values.timestamp = new Date(values.date).getTime()
+        values.dateCategory = `${parseDate.year}-${parseDate.month}`
+        const newItem = await axios.put(`/items/${values.id}`, {...values, cid: cateId})
+        this.setState({
+          items: {
+            ...this.state.items,
+            [values.id]: newItem.data
+          },
+          isLoading: false
+        })
+        return newItem
+      }),
       // 添加数据
-      addItem: withLoading(async(values, ) => {
-        
+      addItem: withLoading(async(values, cateId) => {
+        const newId = ID()
+        const parseDate = parseToYearAndMonth(values.date)
+        values.id = newId
+        values.timestamp = new Date(values.date).getTime()
+        values.dateCategory = `${parseDate.year}-${parseDate.month}`
+        const newItem = await axios.post('/items', {...values, cid: cateId})
+        this.setState({
+          items: {
+            ...this.state.items,
+            [newId]: newItem.data
+          },
+          isLoading: false
+        })
+        return newItem
       }),
       // 获取编辑页面数据，包括分类数据和编辑数据
       getEditData: withLoading(async(id) => {
@@ -70,7 +98,8 @@ class App extends React.Component {
         // 更新数据
         this.setState({
           categories: allCategories,
-          isLoading: false
+          isLoading: false,
+          items: {...this.state.items, [id]: editItem}
         })
         return {item: editItem, categories: allCategories}
       }),

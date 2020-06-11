@@ -106,6 +106,45 @@
       "id": "_qmatbbwq0",
       "cid": "6",
       "timestamp": 1536969600000
+    },
+    {
+      "price": 120,
+      "date": "2020-06-10",
+      "title": "打疫苗啦",
+      "id": "_g6e6mouhu",
+      "timestamp": 1591747200000,
+      "dateCategory": "2020-6",
+      "cid": "9",
+      "category": {
+        "name": "宠物",
+        "iconName": "ios-paw",
+        "id": "9",
+        "type": "outcome"
+      }
+    },
+    {
+      "price": 1000000000,
+      "date": "2020-06-11",
+      "title": "202006工资",
+      "id": "_w63rqkncz",
+      "timestamp": 1591833600000,
+      "dateCategory": "2020-6",
+      "cid": "10"
+    },
+    {
+      "price": 1,
+      "date": "2020-06-10",
+      "title": "222",
+      "id": "_yfqoia7et",
+      "timestamp": 1591747200000,
+      "dateCategory": "2020-6",
+      "cid": "12",
+      "category": {
+        "name": "兼职",
+        "iconName": "ios-cash",
+        "id": "11",
+        "type": "income"
+      }
     }
   ]
 }

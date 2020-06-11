@@ -51,6 +51,8 @@ class Home extends React.Component {
         const {items, categories, currentDate, isLoading} = data
         const {tabView} = this.state
 
+        console.log(items)
+
         // 添加目录类型
         const itemsWithCategory = Object.keys(items).map(id => {
             items[id].category = categories[items[id].cid]

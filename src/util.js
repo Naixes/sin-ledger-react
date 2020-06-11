@@ -3,6 +3,13 @@ export const CHART_VIEW = 'chart'
 export const TYPE_INCOME = 'income'
 export const TYPE_OUTCOME = 'outcome'
 
+export const ID = () => {
+  // Math.random should be unique because of its seeding algorithm.
+  // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+  // after the decimal.
+  return '_' + Math.random().toString(36).substr(2, 9);
+}
+
 // 将数组转换为以id为键的对象
 export const flatternArr = (arr) => {
   return arr.reduce((map, item) => {

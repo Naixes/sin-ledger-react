@@ -22,10 +22,12 @@ class PriceForm extends React.Component {
   }
   submit = (e) => {
     e.preventDefault()
-    const {onSubmit} = this.props
+    const {onSubmit, item} = this.props
+
     const price = this.priceInput.value.trim() * 1
     const date = this.dateInput.value.trim()
     const title = this.titleInput.value.trim()
+    const isEdit = !!item.id
 
     if(price && title && date) {
         if(price < 0) {
@@ -43,7 +45,7 @@ class PriceForm extends React.Component {
                 isValidate: true,
                 errMessage: ''
             })
-            onSubmit({price, date, title})
+            onSubmit({...item, price, date, title}, isEdit)
         }
     } else {
         this.setState({
