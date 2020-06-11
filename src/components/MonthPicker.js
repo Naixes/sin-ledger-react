@@ -31,18 +31,18 @@ class MonthPicker extends React.Component {
             isOpen: !this.state.isOpen
         })
     }
-    selectYear = (event, selected) => {
+    selectYear = (event, yearNumber) => {
         // event.preventDefault()
         this.setState({
-            selectedYear: selected
+            selectedYear: yearNumber
         })
     }
-    selectMonth = (event, selected) => {
+    selectMonth = (event, monthNumber) => {
         // event.preventDefault()
         this.setState({
             isOpen: false
         })
-        this.props.onChange(this.state.selectedYear, selected)
+        this.props.onChange(this.state.selectedYear, monthNumber)
     }
     render() {
         const {year, month} = this.props

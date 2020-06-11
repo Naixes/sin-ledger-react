@@ -37,10 +37,19 @@ class Create extends React.Component {
     }
     // 表单
     submit = (values, isEdit) => {
-        isEdit ? this.props.actions.updateItem(values, this.state.activeCategoryId) : this.props.actions.addItem(values, this.state.activeCategoryId)
+        if(isEdit) {
+            this.props.actions.updateItem(values, this.state.activeCategoryId).then(() => {
+                this.props.history.push('/')
+            })
+        }else {
+            this.props.actions.addItem(values, this.state.activeCategoryId).then(() => {
+                this.props.history.push('/')
+            })
+        }
+    }
+    cancel = () => {
         this.props.history.push('/')
     }
-    cancel = () => {}
     componentDidMount() {
         const {id} = this.props.match.params
         this.props.actions.getEditData(id).then(({item, categories}) => {
@@ -57,6 +66,8 @@ class Create extends React.Component {
         const {categories, items} = data
         const {id} = this.props.match.params
         const {defaultTabIndex, activeCategoryId} = this.state
+
+        console.log(items)
 
         // 过滤类目
         const filterCategories = Object.keys(categories).filter(key => (categories[key].type === tabs[defaultTabIndex].value)).map(key => categories[key])

@@ -145,6 +145,33 @@
         "id": "11",
         "type": "income"
       }
+    },
+    {
+      "price": 500,
+      "date": "2020-06-09",
+      "title": "嘿嘿",
+      "id": "_mq2x6b2ii",
+      "timestamp": 1591660800000,
+      "dateCategory": "2020-6",
+      "cid": "1"
+    },
+    {
+      "price": 2222,
+      "date": "2020-06-17",
+      "title": "1111",
+      "id": "_p7weoot6u",
+      "timestamp": 1592352000000,
+      "dateCategory": "2020-6",
+      "cid": "14"
+    },
+    {
+      "price": 666,
+      "date": "2020-06-10",
+      "title": "666",
+      "id": "_c2rlck1en",
+      "timestamp": 1591747200000,
+      "dateCategory": "2020-6",
+      "cid": "14"
     }
   ]
 }

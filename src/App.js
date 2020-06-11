@@ -46,6 +46,26 @@ class App extends React.Component {
           isLoading: false
         })
       }),
+      // 删除数据
+      deleteItem: withLoading(async(id) => {
+        const deletItem = await axios.get(`/items/${id}`)
+        delete this.state.items[id]
+        this.setState({
+          items: this.state.items,
+          isLoading: false
+        })
+        return deletItem.data
+      }),
+      // 选择日期
+      selectDate: withLoading(async(year, month) => {
+        const results = await axios.get(`/items?dateCategory=${year}-${month}&_sort=timestamp&_order=desc`)
+        console.log(results)
+        this.setState({
+          items: flatternArr(results.data),
+          currentDate: { year, month },
+          isLoading: false
+        })
+      }),
       // 更新数据
       updateItem: withLoading(async(values, cateId) => {
         const parseDate = parseToYearAndMonth(values.date)
@@ -59,7 +79,7 @@ class App extends React.Component {
           },
           isLoading: false
         })
-        return newItem
+        return newItem.data
       }),
       // 添加数据
       addItem: withLoading(async(values, cateId) => {
@@ -69,6 +89,7 @@ class App extends React.Component {
         values.timestamp = new Date(values.date).getTime()
         values.dateCategory = `${parseDate.year}-${parseDate.month}`
         const newItem = await axios.post('/items', {...values, cid: cateId})
+        console.log(111,this.state.items)
         this.setState({
           items: {
             ...this.state.items,
@@ -76,7 +97,7 @@ class App extends React.Component {
           },
           isLoading: false
         })
-        return newItem
+        return newItem.data
       }),
       // 获取编辑页面数据，包括分类数据和编辑数据
       getEditData: withLoading(async(id) => {
@@ -96,11 +117,18 @@ class App extends React.Component {
         const editItem = item ? item.data : items[id]
         const allCategories = fetchedCategories ? flatternArr(fetchedCategories.data) : categories
         // 更新数据
-        this.setState({
-          categories: allCategories,
-          isLoading: false,
-          items: {...this.state.items, [id]: editItem}
-        })
+        if(id) {
+          this.setState({
+            categories: allCategories,
+            isLoading: false,
+            items: {...this.state.items, [id]: editItem}
+          })
+        }else {
+          this.setState({
+            categories: allCategories,
+            isLoading: false
+          })
+        }
         return {item: editItem, categories: allCategories}
       }),
     }

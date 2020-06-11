@@ -29,17 +29,10 @@ class Home extends React.Component {
         this.props.history.push(`/edit/${id}`)
     }
     deleteItem = (id) => {
-        const filterItems = this.state.items.filter(item => {
-            return item.id !== id
-        })
-        this.setState({
-            items: filterItems
-        })
+        this.props.actions.deleteItem(id)
     }
     changeDate = (year, month) => {
-        this.setState({
-            currentDate: {year, month}
-        })
+        this.props.actions.selectDate(year, month)
     }
     changeTab = (tab) => {
         this.setState({
