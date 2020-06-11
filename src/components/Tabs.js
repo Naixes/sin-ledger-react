@@ -25,7 +25,7 @@ export class Tabs extends React.Component {
           {React.Children.map(children, (child, index) => {
               const activeClassName = index === activeTabIndex ? 'nav-link active' : 'nav-link'
               return (
-                  <li className="nav-item">
+                  <li key={index} className="nav-item">
                     {/* eslint-disable-next-line */}
                     <a 
                         className={activeClassName} 

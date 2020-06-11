@@ -3,6 +3,14 @@ export const CHART_VIEW = 'chart'
 export const TYPE_INCOME = 'income'
 export const TYPE_OUTCOME = 'outcome'
 
+// 将数组转换为以id为键的对象
+export const flatternArr = (arr) => {
+  return arr.reduce((map, item) => {
+    map[item.id] = item
+    return map
+  }, {})
+}
+
 // 校验时间字符串
 export const validateDate = (dateStr) => {
   // 校验格式

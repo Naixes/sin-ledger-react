@@ -3,63 +3,34 @@ import React from 'react';
 import {Tabs, Tab} from '../components/Tabs';
 import CategorySelect from '../components/CategorySelect';
 import PriceForm from '../components/PriceForm';
-
-const testCategories = [
-    {
-        "name": "旅行",
-        "iconName": "ios-plane",
-        "id": "1",
-        "type": "outcome"
-    },
-    {
-        "name": "餐饮",
-        "iconName": "ios-restaurant",
-        "id": "2",
-        "type": "outcome"
-    },
-    {
-        "name": "购物",
-        "iconName": "ios-basket",
-        "id": "3",
-        "type": "outcome"
-    },
-    {
-        "name": "数码",
-        "iconName": "ios-phone-portrait",
-        "id": "4",
-        "type": "outcome"
-    },
-    {
-        "name": "工资",
-        "iconName": "ios-card",
-        "id": "10",
-        "type": "income"
-    },
-    {
-        "name": "兼职",
-        "iconName": "ios-cash",
-        "id": "11",
-        "type": "income"
-    },
-    {
-        "name": "理财",
-        "iconName": "logo-yen",
-        "id": "12",
-        "type": "income"
-    },
-]
+import withContext from '../WithContext'
+import { TYPE_INCOME, TYPE_OUTCOME } from '../util'
 
 const editItem = {}
+const tabs = [
+    { label: '支出',
+      value: TYPE_OUTCOME },
+    { label: '收入',
+      value: TYPE_INCOME},
+]
   
 class Create extends React.Component {
     constructor() {
         super()
         this.state = {
+            // 类别index
             defaultTabIndex: 0,
-            activeCategoryId: '1'
+            // 类目id
+            activeCategoryId: ''
         }
     }
-    // 分类选择
+    // 类别选择
+    tabChange = (index) => {
+        this.setState({
+            defaultTabIndex: index
+        })
+    }
+    // 类目选择
     categoryChange = (id) => {
         this.setState({
             activeCategoryId: id
@@ -70,20 +41,39 @@ class Create extends React.Component {
         console.log(values)
     }
     cancel = () => {}
+    componentDidMount() {
+        const {id} = this.props.match.params
+        this.props.actions.getEditData(id).then(({item, categories}) => {
+            this.setState({
+                // 类别
+                defaultTabIndex: (id && item) ? tabs.findIndex(tab => categories[item.cid].type === tab.value) : 0,
+                // 类目
+                activeCategoryId: (id && item) ? item.cid : null,   
+            })
+        })
+    }
     render() {
+        const {data} = this.props
+        const {categories} = data
         const {defaultTabIndex, activeCategoryId} = this.state
+
+        // 过滤类目
+        const filterCategories = Object.keys(categories).filter(key => (categories[key].type === tabs[defaultTabIndex].value)).map(key => categories[key])
+
         return (
             // py：padding-bottom/top
             <div className="create-page py-3 px-3">
-                <Tabs defaultTabIndex={defaultTabIndex} onTabChange={(cur) =>{console.log(cur)}}>
-                    <Tab>收入</Tab>
-                    <Tab>支出</Tab>
+                <Tabs defaultTabIndex={defaultTabIndex} onTabChange={this.tabChange}>
+                    { tabs.map(tab => (
+                        <Tab key={tab.value}>{tab.label}</Tab>
+                    ))
+                    }
                 </Tabs>
-                <CategorySelect activeCategoryId={activeCategoryId} categories={testCategories} onCategoryChange={this.categoryChange}></CategorySelect>
+                <CategorySelect activeCategoryId={activeCategoryId} categories={filterCategories} onCategoryChange={this.categoryChange}></CategorySelect>
                 <PriceForm onSubmit={this.submit} onCancel={this.cancel} item={editItem}></PriceForm>
             </div>
         )
     }
 }
 
-export default Create
+export default withContext(Create)

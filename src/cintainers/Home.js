@@ -31,9 +31,7 @@ class Home extends React.Component {
         this.props.actions.getInitialData()
     }
     addItem = () => {
-        this.setState({
-            items: [newItem, ...this.state.items]
-        })
+        this.props.history.push('/create')
     }
     modifyItem = (id) => {
         const modifiedItems = this.state.items.map(item => {
@@ -70,10 +68,10 @@ class Home extends React.Component {
         const {tabView} = this.state
 
         console.log('items', items)
-        // 添加目录类型并且过滤时间
-        const itemsWithCategory = items.map(item => {
-            item.category = categories[item.cid]
-            return item
+        // 添加目录类型
+        const itemsWithCategory = Object.keys(items).map(id => {
+            items[id].category = categories[items[id].cid]
+            return items[id]
         })
         return (
             // 空节点

@@ -8,7 +8,7 @@ import './App.css';
 import Home from './cintainers/Home';
 import Create from './cintainers/Create';
 
-import {parseToYearAndMonth} from './util'
+import {parseToYearAndMonth, flatternArr} from './util'
 import {AppContext} from './AppContent'
 
 class App extends React.Component {
@@ -41,11 +41,39 @@ class App extends React.Component {
         const results = await Promise.all([axios.get('/categories'), axios.get(`/items?dateCategory=${currentDate.year}-${currentDate.month}&_sort=timestamp&_order=desc`)])
         const [categories, items] = results
         this.setState({
-          items: items.data,
-          categories: categories.data,
+          items: flatternArr(items.data),
+          categories: flatternArr(categories.data),
           isLoading: false
         })
-      })
+      }),
+      // 添加数据
+      addItem: withLoading(async() => {
+        
+      }),
+      // 获取编辑页面数据，包括分类数据和编辑数据
+      getEditData: withLoading(async(id) => {
+        const {categories, items} = this.state
+        let promiseArr = []
+        // 所有分类数据
+        if(Object.keys(categories).length < 1) {
+          promiseArr.push(axios.get('/categories'))
+        }
+        // 编辑数据
+        const itemAlreadyFetched = (Object.keys(items).indexOf(id)>-1)
+        if(id && !itemAlreadyFetched) {
+          promiseArr.push(axios.get(`/items/${id}`))
+        }
+        const [ fetchedCategories , item ] = await Promise.all(promiseArr)
+        // 整合数据
+        const editItem = item ? item.data : items[id]
+        const allCategories = fetchedCategories ? flatternArr(fetchedCategories.data) : categories
+        // 更新数据
+        this.setState({
+          categories: allCategories,
+          isLoading: false
+        })
+        return {item: editItem, categories: allCategories}
+      }),
     }
   }
 

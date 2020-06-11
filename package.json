@@ -15,9 +15,7 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts start\" \"npm run mock\"",
-    "start2": "npm run mock & react-scripts start",
-    "dev:start": "react-scripts start",
+    "start": "concurrently \"npm run mock\" \"react-scripts start\"",
     "mock": "json-server --watch db.json --port 3005",
     "build": "react-scripts build",
     "test": "react-scripts test",
