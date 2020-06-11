@@ -8,7 +8,7 @@ import Loader from '../components/Loader';
 
 import withContext from '../WithContext'
 // 可以用Tabs组件替代
-import {LIST_VIEW} from '../util'
+import {LIST_VIEW, TYPE_OUTCOME} from '../util'
 
 import React from 'react';
 
@@ -51,6 +51,17 @@ class Home extends React.Component {
             items[id].category = categories[items[id].cid]
             return items[id]
         })
+
+        // 总计
+        let totalIncome = 0, totalOutcome = 0
+        itemsWithCategory.forEach(item => {
+            if (item.category.type === TYPE_OUTCOME) {
+                totalOutcome += item.price
+            } else {
+                totalIncome += item.price
+            }
+        });
+
         return (
             // 空节点
             <React.Fragment>
@@ -64,7 +75,7 @@ class Home extends React.Component {
                             <MonthPicker year={currentDate.year} month={currentDate.month} onChange={this.changeDate}></MonthPicker>
                             </div>
                             <div className="col">
-                            <TotalPrice income={0} outcome={0}></TotalPrice>
+                            <TotalPrice income={totalIncome} outcome={totalOutcome}></TotalPrice>
                             </div>
                         </div>
                     </div>
