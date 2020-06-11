@@ -52,8 +52,6 @@ const renderActiveShape = (props) => {
 
 
 export default class Example extends PureComponent {
-  static jsfiddleUrl = 'https://jsfiddle.net/alidingling/hqnrgxpj/';
-
   state = {
     activeIndex: 0,
   };
