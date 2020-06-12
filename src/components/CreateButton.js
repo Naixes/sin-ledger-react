@@ -11,7 +11,7 @@ const CreateButton = ({onClick}) => {
                 color='#fff'
                 icon="ios-add-circle"
             ></Ionicons>
-            创建一条新纪录
+            创建一条新的记账纪录
         </button>
     )
 }

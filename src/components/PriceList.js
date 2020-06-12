@@ -33,7 +33,7 @@ const PriceList = ({items, onModifyItem, onDeleteItem}) => {
                         <Ionicon
                             className="rounded-circle"
                             fontSize="30px"
-                            style={{backgroundColor: Colors.blue, padding: '5px'}}
+                            style={{backgroundColor: Colors.green, padding: '5px'}}
                             color={'#fff'}
                             icon='ios-create-outline'
                         ></Ionicon>
@@ -48,7 +48,7 @@ const PriceList = ({items, onModifyItem, onDeleteItem}) => {
                         <Ionicon
                             className="rounded-circle"
                             fontSize="30px"
-                            style={{backgroundColor: Colors.blue, padding: '5px'}}
+                            style={{backgroundColor: Colors.red, padding: '5px'}}
                             color={'#fff'}
                             icon='ios-close'
                         ></Ionicon>
