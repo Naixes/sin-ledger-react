@@ -4,7 +4,7 @@ import Ionicons from 'react-ionicons'
 
 const CreateButton = ({onClick}) => {
     return (
-        <button className="btn btn-primary btn-block d-flex justify-content-center align-items-center" onClick={(e) => {onClick()}}>
+        <button style={{borderRadius: '0'}} className="btn btn-primary btn-block d-flex justify-content-center align-items-center" onClick={(e) => {onClick()}}>
             <Ionicons 
                 className="rounded-circle"
                 fontSize="30px"

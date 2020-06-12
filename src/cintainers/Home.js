@@ -84,21 +84,19 @@ class Home extends React.Component {
             // 空节点
             <React.Fragment>
                 <header className="home-header">
-                    <div className="row mb-5">
+                    <div className="row mt-3 mb-3 justify-content-center">
                         <img src={logo} className="App-logo" alt="logo" />
                     </div>
-                    <div className="container">
-                        <div className="row align-items-end">
-                            <div className="col">
-                            <MonthPicker year={currentDate.year} month={currentDate.month} onChange={this.changeDate}></MonthPicker>
-                            </div>
-                            <div className="col">
-                            <TotalPrice income={totalIncome} outcome={totalOutcome}></TotalPrice>
-                            </div>
+                    <div className="row align-items-end">
+                        <div className="col">
+                        <MonthPicker year={currentDate.year} month={currentDate.month} onChange={this.changeDate}></MonthPicker>
+                        </div>
+                        <div className="col">
+                        <TotalPrice income={totalIncome} outcome={totalOutcome}></TotalPrice>
                         </div>
                     </div>
                 </header>
-                <div className="home-content">
+                <div className="home-content py-4 px-3">
                     { isLoading &&
                     <Loader/>
                     }

@@ -89,7 +89,6 @@ class App extends React.Component {
         values.timestamp = new Date(values.date).getTime()
         values.dateCategory = `${parseDate.year}-${parseDate.month}`
         const newItem = await axios.post('/items', {...values, cid: cateId})
-        console.log(111,this.state.items)
         this.setState({
           items: {
             ...this.state.items,
@@ -143,9 +142,11 @@ class App extends React.Component {
       }}>
         <Router>
           <div className="App">
-            <Route path="/" exact component={Home}></Route>
-            <Route path="/create" component={Create}></Route>
-            <Route path="/edit/:id" component={Create}></Route>
+            <div className="container pb-5">
+              <Route path="/" exact component={Home}></Route>
+              <Route path="/create" component={Create}></Route>
+              <Route path="/edit/:id" component={Create}></Route>
+            </div>
           </div>
         </Router>
       </AppContext.Provider>

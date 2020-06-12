@@ -67,26 +67,35 @@ export default class Example extends PureComponent {
     return (
         <div>
             <h3 style={{textAlign: 'center'}} className="mt-3">{title}</h3>
-            <ResponsiveContainer width={'100%'} height={300}>
-                <PieChart>
-                    <Pie
-                    activeIndex={this.state.activeIndex}
-                    activeShape={renderActiveShape}
-                    data={data}
-                    cx="50%" 
-                    cy="50%" 
-                    innerRadius={40}
-                    outerRadius={'60%'}
-                    fill="#8884d8"
-                    dataKey="value"
-                    onMouseEnter={this.onPieEnter}
-                    >
-                    {
-                        data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
-                    }
-                    </Pie>
-                </PieChart>
-            </ResponsiveContainer>
+            <React.Fragment>
+              { !data.length &&
+              <div className="alert alert-light text-center no-record">
+                {`您还没有${title}记录`}
+              </div>
+              }
+              { !!data.length && 
+              <ResponsiveContainer width={'100%'} height={300}>
+                  <PieChart>
+                      <Pie
+                      activeIndex={this.state.activeIndex}
+                      activeShape={renderActiveShape}
+                      data={data}
+                      cx="50%" 
+                      cy="50%" 
+                      innerRadius={40}
+                      outerRadius={'60%'}
+                      fill="#8884d8"
+                      dataKey="value"
+                      onMouseEnter={this.onPieEnter}
+                      >
+                      {
+                          data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+                      }
+                      </Pie>
+                  </PieChart>
+              </ResponsiveContainer>
+              }
+            </React.Fragment>
         </div>
     );
   }

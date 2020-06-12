@@ -9,7 +9,7 @@ const generateLinkClass = (activeTab, current) => {
 
 const ViewTab = ({activeTab, onChangeTab}) => {
     return (
-        <ul className="nav nav-tabs nav-fill my-4">
+        <ul className="nav nav-tabs nav-fill my-2">
             <li className="nav-item">
                 {/* eslint-disable-next-line */}
                 <a 
