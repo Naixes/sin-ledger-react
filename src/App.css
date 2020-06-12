@@ -25,6 +25,19 @@
   color: white;
 }
 
+.home-header .container {
+    white-space: nowrap;
+    margin: 0;
+}
+
+.home-header .container .row {
+  flex-wrap: nowrap;
+}
+
+.home-header .container .col {
+  min-width: unset;
+}
+
 .App-link {
   color: #61dafb;
 }

@@ -32,7 +32,7 @@ class Home extends React.Component {
     constructor() {
         super()
         this.state = {
-            tabView: CHART_VIEW
+            tabView: LIST_VIEW
         }
     }
     componentDidMount() {
@@ -59,8 +59,6 @@ class Home extends React.Component {
         const {data} = this.props
         const {items, categories, currentDate, isLoading} = data
         const {tabView} = this.state
-
-        console.log(items)
 
         // 添加目录类型，返回数组
         const itemsWithCategory = Object.keys(items).map(id => {
