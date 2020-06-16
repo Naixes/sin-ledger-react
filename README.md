@@ -247,3 +247,179 @@ export default MonthPicker
 #### 分析数据流
 
 分析添加组件方法（单项数据流）
+
+### 组件测试
+
+测试金字塔：UI(E2E)--Service--Unit
+
+#### 通用测试框架Jest
+
+断言库
+
+`npm test xxx.js`
+
+```js
+expect().toBe()
+expect().not.toBe()
+expect().toBeTruthy()
+expect().toBeFalsy()
+expect().toBeGreaterThan()
+expect().toBeLessThan()
+expect().toEqual()
+```
+
+##### Snapshot testing
+
+jest为react提供的特性
+
+#### React测试工具
+
+官方：ReactTestUtils
+
+Enzyme基于官方的封装
+
+##### Enzyme
+
+两种测试方法
+
+**Shallow Rendering**：不会渲染子组件，速度快
+
+**DOM Rendering**：渲染Dom，包括子组件速度慢
+
+`npm i enzyme enzyme-adapter-react-16 --save-dev`
+
+src/新建文件setupTests.js
+
+```react
+import {configure} from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({adapter: new Adapter()})
+```
+
+新建文件`components/__test__/xxx.text.js`
+
+```react
+import React from 'react'
+import {shallow} from 'enzyme'
+...
+```
+
+`npm test // 执行测试`
+
+`npm test -t xxx // 单独测试某个文件`
+
+#### 测试用例分析
+
+列出测试项
+
+**展示型组件**
+
+**容器型组件**
+
+测试默认状态
+
+测试交互           
+
+### React Router
+
+- Components Base
+- 声明式和可组合
+- 支持多种应用：web，RN
+
+安装react-router-dom                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+
+### 新建页
+
+#### 重构ViewTab
+
+#### CategorySelect
+
+#### PriceForm
+
+### 将方法和状态抽象到顶层
+
+#### 状态提升
+
+##### Flatten State
+
+#### Context
+
+#### HOC
+
+就是一个函数，传入组件返回另外一个组件
+
+### mock server
+
+快速搭建
+
+符合restful标准操作
+
+支持restful路由规则
+
+进阶扩展，比如自定义路由，中间件支持等
+
+#### json-server
+
+#### 分析接口
+
+##### postman测试post接口
+
+#### axios
+
+fetch的缺点：
+
+- 只对网络请求报错，400，500都视为成功的请求
+- 默认不会带cookie
+- 不支持abort，不支持超时操作
+- 没办法原生监测请求进度
+
+### 测试
+
+测试高阶组件，需要导出原始组件，手动传入数据
+
+### 图表
+
+#### Recharts
+
+**npm-state**可以查看包的下载量
+
+**npm view xxx**可以查看发布频率
+
+##### 组合式组件
+
+#### 算法
+
+### 部署
+
+#### 生产环境和开发环境
+
+`npm run build`
+
+#### 服务器
+
+##### shared host/VPS/cloud hosts
+
+共享服务器
+
+虚拟个人服务器
+
+云服务器		
+
+#### 使用jason-server部署到本地
+
+#### 使用LeanCloud部署到云服务器
+
+安装
+
+注册
+
+登陆
+
+新建项目
+
+修改代码
+
+部署
+
+绑定域名
